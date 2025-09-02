@@ -38,6 +38,18 @@ interface ICinemaData {
   totalCount: number;
 }
 
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
 function App() {
   const [dataSource, setDataSource] = useState<ICinemaData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -57,55 +69,47 @@ function App() {
 
   if (loading) return <p>Loading...</p>;
 
-  interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-  }
-
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
       {dataSource?.titles.map((title) => (
         <div
-          key={title.id}
+          className="card"
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "start",
-            width: "100%",
+            justifyContent: "space-between",
           }}
         >
-          <div>{title.primaryTitle}</div>
+          <img
+            style={{ width: "18rem", height: "400px" }}
+            src={title.primaryImage.url}
+            className="card-img-top"
+            alt="..."
+          />
           <div
+            className="card-body"
             style={{
               display: "flex",
-              flexDirection: "row",
-              alignItems: "start",
+              flexDirection: "column",
               justifyContent: "space-between",
+              alignItems: "center",
+              width: "18rem",
+              padding: "20px 0",
             }}
           >
-            <img
-              src={title.primaryImage.url}
-              alt={title.primaryTitle}
-              style={{ width: "300px", height: "auto" }}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-                justifyContent: "space-between",
-              }}
+            <h5 className="card-title">{title.primaryTitle}</h5>
+            {/* <p className="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card’s content.
+              {title.plot}
+            </p> */}
+            <a
+              href="#"
+              className="btn btn-primary"
+              style={{ width: "100%", margin: 0 }}
             >
-              <div>{title.plot}</div>
-              <div>{title.genres.join(", ")}</div>
-
-              <div>{title.runtimeSeconds}</div>
-              <div>{title.startYear}</div>
-              <div>{title.type}</div>
-            </div>
+              show more info
+            </a>
           </div>
         </div>
       ))}
