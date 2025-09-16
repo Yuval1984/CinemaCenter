@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -30,8 +32,5 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
-  "homepage": "https://Yuval1984.github.io/CinemaCenter",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-
+  "homepage": "https://Yuval1984.github.io/CinemaCenter"
 }
