@@ -1,0 +1,21 @@
+.cinema-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 12px 12px 20px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 0px;
+  }
+}
+
+.primary-title {
+  white-space: nowrap; /* keep text on one line */
+  //overflow: hidden; /* hide overflow */
+  text-overflow: ellipsis; /* show "..." */
+  width: 200px; /* required fixed width */
+  display: inline-block; /* or block */
+}
