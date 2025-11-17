@@ -5,7 +5,11 @@ function Card(props: { title: ITitleData }) {
     return (
         <div className="cinema-card">
             <Heart title={props.title} />
-            <img className="image" src={props.title.primaryImage.url} alt={props.title.primaryTitle} />
+            {props.title.primaryImage?.url ? (
+                <img className="image" src={props.title.primaryImage.url} alt={props.title.primaryTitle} />
+            ) : (
+                <div className="image-placeholder">No image available</div>
+            )}
             {/* <div className="card-body">
                 <h2 className="title">{props.title.primaryTitle}</h2>
                 <p className="plot">{props.title.plot}</p>
