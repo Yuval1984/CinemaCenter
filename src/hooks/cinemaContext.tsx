@@ -6,6 +6,17 @@ export interface CinemaContextValue {
   loading: boolean;
   error: string | null;
   favourites: ITitleData[];
+  selectedType: string;
+  setSelectedType: (type: string) => void;
+  searchTitle: string;
+  setSearchTitle: (title: string) => void;
+  filteredTitles: ITitleData[];
+  filteredFavourites: ITitleData[];
+  resetFavourites: () => void;
+  page: number;
+  setPage: (page: number) => void;
+  pageToken: string | null;
+  pageTokensCount: number;
   addFavourite: (title: ITitleData) => void;
   removeFavourite: (id: string) => void;
   refetch: () => void;

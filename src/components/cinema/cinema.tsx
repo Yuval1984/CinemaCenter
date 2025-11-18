@@ -1,18 +1,41 @@
-import { useState } from "react";
 import { useCinema } from "../../hooks/cinemaContext";
-import { ITitleData, ICinemaData } from "../../App";
 import "./cinema.css";
 import Card from "../card/card";
+import CardSkeleton from "../card/cardSkeleton";
 
 function Cinema() {
-    const { cinema, loading, error, refetch } = useCinema();
-    if (loading) return <p>Loading movies...</p>;
-    if (error) return <p>Error: {error}</p>;
-    if (!cinema) return <p>No cinema data yet.</p>;
+    const { loading, error, filteredTitles } = useCinema();
+    
+    if (loading) {
+        return (
+            <div className="card-container">
+                {Array.from({ length: 12 }).map((_, index) => (
+                    <CardSkeleton key={`skeleton-${index}`} />
+                ))}
+            </div>
+        );
+    }
+    
+    if (error) {
+        return (
+        <div className="center-container">
+            <img className="no-data-image" src={'src/assets/no_data_fetched.png'} alt="No results" />
+            <p>No titles received from the API</p>
+        </div>
+        );
+    }
+    if (!filteredTitles || filteredTitles.length === 0) {
+        return (
+            <div className="center-container">
+                <img className="no-data-image" src={'src/assets/no_data_fetched.png'} alt="No results" />
+                <p>No titles matching the search criteria</p>
+            </div>
+        );
+    }
     return (
         <>
             <div className="card-container">
-                {cinema.titles.map((title) => (
+                {filteredTitles.map((title) => (
                     <Card key={title.id} title={title} />
                 ))}
             </div>
