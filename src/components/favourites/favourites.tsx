@@ -1,9 +1,22 @@
 import "./favourites.scss";
 import { useCinema } from "../../hooks/cinemaContext";
 import Card from "../card/card";
+import { ITitleData } from "../../App";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
+
 function Favourites() {
-    const { filteredFavourites, favourites } = useCinema();
+    const { filteredFavourites, favourites, setExpandedTitle } = useCinema();
+    const navigate = useNavigate();
     
+    const handleCardClick = useCallback((title: ITitleData) => {
+        if (!navigate) {
+            console.error('Navigate is not available');
+            return;
+        }
+        setExpandedTitle(title);
+        navigate('/expand');
+    }, [navigate, setExpandedTitle]);
     // Show message if no favourites at all
     if (!favourites || favourites.length === 0) {
         return (
@@ -27,7 +40,7 @@ function Favourites() {
     return (
         <div className="card-container">
             {filteredFavourites.map((title) => (
-                <Card key={title.id} title={title} />
+                <Card key={title.id} title={title} onClick={() => handleCardClick(title)}/>
             ))}
         </div>
     );

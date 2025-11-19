@@ -9,6 +9,7 @@ import Cinema from "./components/cinema/cinema";
 import Dashboard from "./components/dashboard/dashboard";
 import Favourites from "./components/favourites/favourites";
 import { Navigate, Route, Routes } from "react-router-dom";
+import Expand from "./components/expand/expand";
 
 export interface ITitleData {
   genres: string[];
@@ -45,6 +46,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [pageTokens, setPageTokens] = useState<{ [key: number]: string | null }>({ 1: null });
   const [hasInitialized, setHasInitialized] = useState(false);
+  const [expandedTitle, setExpandedTitle] = useState<ITitleData | null>(null);
 
   const fetchMovies = useCallback(
     async (token?: string | null, pageNumber?: number) => {
@@ -174,6 +176,8 @@ function App() {
     setSearchTitle,
     resetFavourites,
     page,
+    expandedTitle,
+    setExpandedTitle,
     setPage: handlePageChange,
     pageToken: pageTokens[page] || null,
     pageTokensCount: Object.keys(pageTokens).length,
@@ -192,6 +196,7 @@ function App() {
         <Route path="/" element={<Navigate to="/cinema" replace />} />
         <Route path="/cinema" element={<Cinema />} />
         <Route path="/favourites" element={<Favourites />} />
+        <Route path="/expand" element={<Expand />} />
       </Routes>
 
     </CinemaContext.Provider>

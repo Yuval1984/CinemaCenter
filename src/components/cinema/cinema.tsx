@@ -2,9 +2,22 @@ import { useCinema } from "../../hooks/cinemaContext";
 import "./cinema.css";
 import Card from "../card/card";
 import CardSkeleton from "../card/cardSkeleton";
+import { ITitleData } from "../../App";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 function Cinema() {
-    const { loading, error, filteredTitles } = useCinema();
+    const { loading, error, filteredTitles, setExpandedTitle } = useCinema();
+    const navigate = useNavigate();
+    
+    const handleCardClick = useCallback((title: ITitleData) => {
+        if (!navigate) {
+            console.error('Navigate is not available');
+            return;
+        }
+        setExpandedTitle(title);
+        navigate('/expand');
+    }, [navigate, setExpandedTitle]);
     
     if (loading) {
         return (
@@ -32,11 +45,12 @@ function Cinema() {
             </div>
         );
     }
+
     return (
         <>
             <div className="card-container">
                 {filteredTitles.map((title) => (
-                    <Card key={title.id} title={title} />
+                    <Card key={title.id} title={title} onClick={() => handleCardClick(title)}/>
                 ))}
             </div>
         </>

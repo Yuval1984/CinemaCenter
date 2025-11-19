@@ -17,6 +17,8 @@ export interface CinemaContextValue {
   setPage: (page: number) => void;
   pageToken: string | null;
   pageTokensCount: number;
+  expandedTitle: ITitleData | null;
+  setExpandedTitle: (title: ITitleData | null) => void;
   addFavourite: (title: ITitleData) => void;
   removeFavourite: (id: string) => void;
   refetch: () => void;

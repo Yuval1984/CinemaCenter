@@ -1,0 +1,18 @@
+.animated-counter {
+  display: inline-block;
+  transition: transform 0.1s ease;
+
+  &.animating {
+    animation: pulse 0.3s ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+

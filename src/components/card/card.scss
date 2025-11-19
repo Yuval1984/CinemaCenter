@@ -5,29 +5,80 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
     cursor: pointer;
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 
-    &:hover {
-        box-shadow: 6px 5px 20px 10px rgb(10 10 10 / 20%);
-        margin-top: -20px;
+    &:not(.expanded) {
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.15s ease;
+
+        &:hover {
+            box-shadow: 6px 5px 20px 10px rgb(10 10 10 / 20%);
+            transform: translateY(-20px) translateZ(0);
+        }
+    }
+
+    &.expanded {
+        cursor: default;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        
+        &:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
     }
 
     .image {
         width: 180px;
         height: 250px;
         border-radius: 10px;
+        object-fit: cover;
+
+        @media (max-width: 1024px) {
+            width: 160px;
+            height: 220px;
+        }
+
+        @media (max-width: 768px) {
+            width: 140px;
+            height: 195px;
+        }
+
+        @media (max-width: 480px) {
+            width: 120px;
+            height: 167px;
+        }
     }
     .image-placeholder {
         width: 180px;
         height: 250px;
         border-radius: 10px;
-        background-color: #f0f0f0;
+        background-color: var(--bg-tertiary);
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: center;
         font-size: 1.2rem;
         font-weight: bold;
+        color: var(--text-secondary);
+
+        @media (max-width: 1024px) {
+            width: 160px;
+            height: 220px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            width: 140px;
+            height: 195px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            width: 120px;
+            height: 167px;
+            font-size: 0.9rem;
+        }
     }
 }
