@@ -4,6 +4,7 @@ import Card from "../card/card";
 import { ITitleData } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import noDataImage from "../../assets/no_data_fetched.png";
 
 function Favourites() {
     const { filteredFavourites, favourites, setExpandedTitle } = useCinema();
@@ -21,7 +22,7 @@ function Favourites() {
     if (!favourites || favourites.length === 0) {
         return (
             <div className="center-container">
-                <img className="no-data-image" src={'src/assets/no_data_fetched.png'} alt="No results" />
+                <img className="no-data-image" src={noDataImage} alt="No results" />
                 <p>No favourites yet</p>
             </div>
         );
@@ -31,7 +32,7 @@ function Favourites() {
     if (!filteredFavourites || filteredFavourites.length === 0) {
         return (
             <div className="center-container">
-                <img className="no-data-image" src={'src/assets/no_data_fetched.png'} alt="No results" />
+                <img className="no-data-image" src={noDataImage} alt="No results" />
                 <p>No favourites matching the search criteria</p>
             </div>
         );

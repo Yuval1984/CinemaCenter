@@ -46,7 +46,7 @@
         min-height: 400px;
         gap: 24px;
 
-        p {
+        & p {
             font-size: 1.5rem;
             color: var(--text-secondary);
         }
@@ -255,7 +255,7 @@
             }
         }
 
-        p {
+        & p {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text-secondary);

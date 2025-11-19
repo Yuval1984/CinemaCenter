@@ -5,6 +5,7 @@ import CardSkeleton from "../card/cardSkeleton";
 import { ITitleData } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import noDataImage from "../../assets/no_data_fetched.png";
 
 function Cinema() {
     const { loading, error, filteredTitles, setExpandedTitle } = useCinema();
@@ -32,7 +33,7 @@ function Cinema() {
     if (error) {
         return (
         <div className="center-container">
-            <img className="no-data-image" src={'src/assets/no_data_fetched.png'} alt="No results" />
+            <img className="no-data-image" src={noDataImage} alt="No results" />
             <p>No titles received from the API</p>
         </div>
         );
@@ -40,7 +41,7 @@ function Cinema() {
     if (!filteredTitles || filteredTitles.length === 0) {
         return (
             <div className="center-container">
-                <img className="no-data-image" src={'src/assets/no_data_fetched.png'} alt="No results" />
+                <img className="no-data-image" src={noDataImage} alt="No results" />
                 <p>No titles matching the search criteria</p>
             </div>
         );

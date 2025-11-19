@@ -99,7 +99,7 @@ function App() {
   useEffect(() => {
     if (!hasInitialized) {
       setHasInitialized(true);
-      fetchMovies(null, 1);
+      //fetchMovies(null, 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasInitialized]);
